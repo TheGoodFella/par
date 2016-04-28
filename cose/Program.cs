@@ -11,6 +11,7 @@ namespace cose
         static void Main(string[] args)
         {
             Par p = new Par();
+            Console.Write(p.CallMulFromDic());
         }
     }
 }

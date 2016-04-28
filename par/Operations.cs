@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace par
 {
-    public class Operations : List<string>
+    /// <summary>
+    /// list of operations
+    /// </summary>
+    public class Operations
     {
+        public string Mul { get; private set; }
+
+        public string Sum { get; private set; }
+
         public Operations()
         {
-
+            Mul = "*";
+            Sum = "+";
         }
     }
 
