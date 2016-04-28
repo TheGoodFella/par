@@ -12,11 +12,7 @@ namespace cose
         {
             Par p = new Par(args);
 
-            //while (true)
-                if (args.Length > 0)
-                {
-                    Console.Write(p.ManageCmd());
-                }
+            Console.Write(p.ManageCmd());
         }
     }
 }

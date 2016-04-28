@@ -23,9 +23,16 @@ namespace par
         /// </summary>
         Dictionary<string, Func<string>> dicSin = new Dictionary<string, Func<string>>();
 
+        /// <summary>
+        /// dictionary for the commands settings, not returs string
+        /// </summary>
+        Dictionary<string, Action> dicVoid = new Dictionary<string, Action>();
+
         public string[] Param { get; set; }
 
         public double Result { get; set; }
+
+        private bool onlyResult = false;
 
         public Par() 
         {
@@ -47,7 +54,26 @@ namespace par
             dicTri.Add(op[op.Div], Div);
 
             //dictionary single
-            dicSin.Add("--help", Help);
+            dicSin.Add("?", Help);
+            dicSin.Add(string.Empty, Empty);
+            dicVoid.Add("-res", Res);
+        }
+
+        private void Res()
+        {
+            onlyResult = true;
+        }
+
+        private string Empty()
+        {
+            string r =  "\n"+
+                        "?\t\t\tshow help\n\n" +
+                        "OPTIONAL COMMANDS OBLIGATORILY IN FIRST PLACE:\n" +
+                        "-res\t\t\tshow only the result\n" +
+                        "NUMERIC PARAMETERS:\n" +
+                        "<num><operator><num>\twithout spaces!, return the mathematical result\n";
+                        
+            return r;
         }
 
         private string Help()
@@ -64,41 +90,57 @@ namespace par
 
         public string ManageCmd()
         {
+            StringBuilder sb = new StringBuilder();
+
+            if (Param.Length == 0)
+                sb.Append(SingleCommands(""));
+
             for (int i = 0; i < Param.Length; i++)
             {
                 for (int o = 0; o < op.Count; o++)
                 {
                     if (Param[i].Contains(op[o]))
                     {
+                        //get the index of the mathematical symbol
                         int index = Param[i].IndexOf(op[o]);
 
+                        //get the first number:
                         string a = Param[i].Substring(0, index);
-                        index = Param[i].IndexOf(op[o]);
-                        string b = Param[i].Substring(index + 1, Param[i].Length-1 - index);
-                        string ope = Param[i].Substring(index,1);
-                        return Calculate(a, b, ope);
+                        //get the second number:
+                        string b = Param[i].Substring(index + 1, Param[i].Length - 1 - index);
+                        //get the mathematical symbol
+                        string ope = Param[i].Substring(index, 1);
+                        //return the mathematical result
+                        sb.Append(Calculate(a, b, ope));
+                    }
+                    else
+                    {
+                        string re = SingleCommands(Param[i]);
+                        if (re != string.Empty)
+                            sb.Append(re);
+                        else
+                            VoidCommands(Param[i]);
                     }
                 }
             }
-            if (Param.Length == 1)
-            {
-                Func<string> funcSin;
-                if (dicSin.TryGetValue(Param[0], out funcSin))
-                    return funcSin();
-                else
-                    return "error";
-            }
 
-            //if (Param.Length == 3)
-            //{
-            //    Func<string, string, string> funcTri;
-            //    if (dicTri.TryGetValue(Param[1], out funcTri))
-            //        return funcTri(Param[0], Param[2]);
-            //    else
-            //        return "no result";
-            //}
+            return sb.ToString();
+        }
 
-            return "null";
+        public void VoidCommands(string cmd)
+        {
+            Action action;
+            if (dicVoid.TryGetValue(cmd, out action))
+                action();
+        }
+
+        public string SingleCommands(string cmd)
+        {
+            Func<string> funcSin;
+            if (dicSin.TryGetValue(cmd, out funcSin))
+                return funcSin();
+
+            return string.Empty;
         }
 
         public string Calculate(string a, string b, string ope)
@@ -107,11 +149,13 @@ namespace par
 
             Func<string, string, string> d;
             if (dicTri.TryGetValue(ope, out d))
-                res=d(a, b);
+                res = d(a, b);
             else
                 return "no result";
-
-            return a + ope + b + "=" + res;
+            if (onlyResult)
+                return res;
+            else
+                return a + ope + b + "=" + res;
         }
 
         private void SendOp(double a, string o, double b)
