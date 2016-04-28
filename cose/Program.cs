@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using par;
 
 namespace cose
 {
@@ -9,6 +10,7 @@ namespace cose
     {
         static void Main(string[] args)
         {
+            Par p = new Par();
 
             string toPrint = "";
             if (args.Length > 0)
