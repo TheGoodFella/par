@@ -15,10 +15,13 @@ namespace par
 
         public string Sum { get; private set; }
 
+        public string Div { get; private set; }
+
         public Operations()
         {
             Mul = "*";
             Sum = "+";
+            Div = "/";
         }
     }
 

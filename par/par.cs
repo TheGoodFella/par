@@ -36,6 +36,7 @@ namespace par
         {
             dic.Add(op.Mul, Mul);
             dic.Add(op.Sum, Sum);
+            dic.Add(op.Div, Div);
         }
 
         public double Calculate(ref double res, ref int i)
@@ -73,6 +74,11 @@ namespace par
         private string Mul(string a, string b)
         {
             return (double.Parse(a) * double.Parse(b)).ToString();
+        }
+
+        private string Div(string a, string b)
+        {
+            return (double.Parse(a) / double.Parse(b)).ToString();
         }
 
         #endregion
