@@ -56,6 +56,8 @@ namespace par
             //dictionary single
             dicSin.Add("?", Help);
             dicSin.Add(string.Empty, Empty);
+
+            //dictionary void
             dicVoid.Add("-res", Res);
         }
 
@@ -68,7 +70,7 @@ namespace par
         {
             string r =  "\n"+
                         "?\t\t\tshow help\n\n" +
-                        "OPTIONAL COMMANDS OBLIGATORILY IN FIRST PLACE:\n" +
+                        "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
                         "-res\t\t\tshow only the result\n" +
                         "NUMERIC PARAMETERS:\n" +
                         "<num><operator><num>\twithout spaces!, return the mathematical result\n";
@@ -111,7 +113,7 @@ namespace par
                         //get the mathematical symbol
                         string ope = Param[i].Substring(index, 1);
                         //return the mathematical result
-                        sb.Append(Calculate(a, b, ope));
+                        sb.Append(Calculate(a, b, ope) + "\n");
                     }
                     else
                     {
