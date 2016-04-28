@@ -22,14 +22,20 @@ namespace par
 
         public Par() 
         {
-            dic.Add("*", new Func<string, string, string>(Mul));
+            StoreDictionary();
         }
 
         public Par(string[] args)
         {
             Param = args;
 
-            dic.Add("*", new Func<string,string,string>(Mul));
+            StoreDictionary();
+        }
+
+        private void StoreDictionary()
+        {
+            dic.Add(op.Mul, Mul);
+            dic.Add(op.Sum, Sum);
         }
 
         public double Calculate(ref double res, ref int i)
@@ -39,17 +45,17 @@ namespace par
             return 0;
         }
 
-        public string CallMulFromDic()
+        public string CallFuncFromDic(string a, string b, string ope)
         {
             string res = "";
 
             Func<string, string, string> d;
-            if (dic.TryGetValue("*", out d))
-                res=d("5", "2");
+            if (dic.TryGetValue(ope, out d))
+                res=d(a, b);
             else
                 return "no result";
 
-            return "5*2=" + res;
+            return a + ope + b + "=" + res;
         }
 
         private void SendOp(double a, string o, double b)

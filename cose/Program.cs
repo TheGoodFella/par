@@ -11,7 +11,7 @@ namespace cose
         static void Main(string[] args)
         {
             Par p = new Par();
-            Console.Write(p.CallMulFromDic());
+            Console.Write(p.CallFuncFromDic("2", "5", "*"));
         }
     }
 }
