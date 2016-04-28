@@ -154,10 +154,13 @@ namespace par
                 res = d(a, b);
             else
                 return "no result";
+            string final = "";
             if (onlyResult)
-                return res;
+                final = res;
             else
-                return a + ope + b + "=" + res;
+                final = a + ope + b + "=" + res;
+            onlyResult = false;
+            return final;
         }
 
         private void SendOp(double a, string o, double b)
