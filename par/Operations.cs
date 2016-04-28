@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using par;
+using System.Threading.Tasks;
 
-namespace cose
+namespace par
 {
-    class Program
+    public class Operations : List<string>
     {
-        static void Main(string[] args)
+        public Operations()
         {
-            Par p = new Par();
+
         }
     }
+
 }

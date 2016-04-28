@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace par
 {
-    public class Par
+    public class Tri
     {
-        public string[] param { get; set; }
+        public double A { get; set; }
+
+        public string O { get; set; }
+
+        public double B { get; set; }
     }
 }
