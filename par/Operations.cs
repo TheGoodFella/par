@@ -9,19 +9,20 @@ namespace par
     /// <summary>
     /// list of operations
     /// </summary>
-    public class Operations
+    public class Operations : List<string>
     {
-        public string Mul { get; private set; }
+        //the indices of the operations ist:
+        public int Mul { get; private set; }
 
-        public string Sum { get; private set; }
+        public int Sum { get; private set; }
 
-        public string Div { get; private set; }
+        public int Div { get; private set; }
 
         public Operations()
         {
-            Mul = "*";
-            Sum = "+";
-            Div = "/";
+            Add("*"); Mul = 0;
+            Add("+"); Sum = 1;
+            Add("/"); Div = 2;
         }
     }
 

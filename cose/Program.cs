@@ -10,14 +10,13 @@ namespace cose
     {
         static void Main(string[] args)
         {
-            Par p = new Par();
+            Par p = new Par(args);
 
-            if (args[0] == "--help")
-            {
-                Console.Write("available operations:\n*\n+\n/");
-                return;
-            }
-            Console.Write(p.CallFuncFromDic(args[0], args[2], args[1]));
+            //while (true)
+                if (args.Length > 0)
+                {
+                    Console.Write(p.ManageCmd());
+                }
         }
     }
 }
