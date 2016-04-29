@@ -286,7 +286,6 @@ namespace par
         public string Calculate(string a, string b, string ope)
         {
             string res = "";
-            Console.WriteLine("operator from Calculate():" + ope);
             Func<string, string, string> d;
             if (dicTri.TryGetValue(ope, out d))
                 res = d(a, b);
