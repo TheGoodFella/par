@@ -113,6 +113,7 @@ namespace par
                        "<num><operator><num>\twithout spaces!, return the mathematical result\n" +
                        "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
                        "-ores\t\t\tshow only the result, without the syntax a+b=result\n" +
+                       "-*all COMMANDs (one at a time) (operate with the result of the operation written after it):\n" +
                        "-sumall\t\t\tsum all the results of the operations written after this command\n" +
                        "-mulall\t\t\tmultiplies all the results of the operations written after this command\n" +
                        "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division\n^ --> Power\nSubtraction --> invert the number sign: instead of 8-3 use 8+-3\n" +
@@ -258,6 +259,8 @@ namespace par
                 if (sumAll) all = 0;
                 if (mulAll) all = 1;
 
+                if (sumAll && mulAll)
+                    Append("Warning: use only one -*all command at a time", true);
 
                 for (int i = 0; i < allRes.Count; i++)
                 {
