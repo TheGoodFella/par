@@ -8,8 +8,17 @@ type ``` <exe name> --help ``` for the list of available operations
 
 #How to use par.dll
 1. Import par.dll library to your C# project;
-2. Create an instance of the class Par;
+``` 
+  using par;
+``` 
+2. Create an instance of the class Par and pass the args[] to the constructor
+``` 
+  Par p = new Par(args);
+``` 
 3. Call the instance method ``` ManageCmd() ``` that returns the output string.
+``` 
+  Console.Write(p.ManageCmd());
+``` 
 
 #Examples:
 **1:**
