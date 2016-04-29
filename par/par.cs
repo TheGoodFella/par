@@ -48,7 +48,6 @@ namespace par
         public Par(string[] args)
         {
             Param = args;
-
             StoreDictionary();
         }
 
