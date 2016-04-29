@@ -34,6 +34,12 @@ namespace par
 
         private bool onlyResult = false;
 
+        private bool onlyAllResult = false;
+
+        private bool sumAll = false;
+
+        private List<double> allRes = new List<double>();
+
         public Par() 
         {
             StoreDictionary();
@@ -58,32 +64,51 @@ namespace par
             dicSin.Add(string.Empty, Empty);
 
             //dictionary void
-            dicVoid.Add("-res", Res);
+            dicVoid.Add("-ores", Res);
+            dicVoid.Add("-sumall", SumAll);
+            dicVoid.Add("-allores", ResAll);
         }
 
+        #region Void methods
         private void Res()
         {
             onlyResult = true;
         }
 
+        private void SumAll()
+        {
+            sumAll = true;
+        }
+
+        private void ResAll()
+        {
+            onlyAllResult = true;
+        }
+        #endregion
+
+        #region single methods
         private string Empty()
         {
-            return Help();
+            return "invalid command, type ? for help";
         }
 
         private string Help()
         {
             string r = "\n" +
                        "?\t\t\tshow help\n\n" +
-                       "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
-                       "-res\t\t\tshow only the result\n" +
                        "NUMERIC PARAMETERS:\n" +
                        "<num><operator><num>\twithout spaces!, return the mathematical result\n" +
-                       "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division";
+                       "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
+                       "-ores\t\t\tshow only the result, without the syntax a+b=result\n" +
+                       "-sumall\t\t\tsum all the results of the operations written after this command\n" +
+                       "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division\n"+
+                       "OPTIONAL COMMANDS IN ANY PLACE\n"+
+                       "-allores\t\tthis command when -sumall, only show the sumall result without syntax: sumall=result";
 
             return r;
         }
-        
+        #endregion
+
         public int IndexParam(string s, string q)
         {
             for (int i = 0; i < Param.Length; i++)
@@ -128,7 +153,18 @@ namespace par
                     }
                 }
             }
+            if (sumAll)
+            {
+                double all = 0;
 
+                for (int i = 0; i < allRes.Count; i++)
+                    all += allRes[i];
+                if (onlyAllResult)
+                    sb.Append(all + "\n");
+                else
+                    sb.Append("Sum all=" + all + "\n");
+                onlyAllResult = false;
+            }
             return sb.ToString();
         }
 
@@ -158,6 +194,11 @@ namespace par
             else
                 return "no result";
             string final = "";
+
+            //if sumall is active, store all the final result for other purpose like sum them all, etc
+            if (sumAll)
+                allRes.Add(double.Parse(res));
+
             if (onlyResult)
                 final = res;
             else
