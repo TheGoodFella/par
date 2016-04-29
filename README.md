@@ -2,7 +2,7 @@
 Console calculator
 
 #How to use it
-call the exe from command line with this syntax: ``` <exe name> <number> <operation symbol (* , + , /)> <number> ```
+call the exe from command line with this syntax: ``` <exe name> <number><operation symbol (* , + , /)><number> ``` no spaces between numbers and operator (```2*3``` --> OK , ```2 * 3``` --> NO!)
 
 type ``` <exe name> --help ``` for the list of available operations
 
@@ -22,18 +22,21 @@ type ``` <exe name> --help ``` for the list of available operations
 
 #Examples:
 **1:**
+INPUT:
 ``` 
->name.exe 8*8 -ores 9+9 -sumall 2+20 1+2 -allores
+>name.exe 8*8 -ores 9+9 -sumall 2+20 -ores 1+2 2^3
 ``` 
 OUTPUT:
 ``` 
 8*8=64
 18
 2+20=22
-1+2=3
-25
+3
+2^3=8
+22+3+8=33
 ```
 **2:**
+INPUT:
 ``` 
 >name.exe -ores 8*8 5/9
 ``` 
@@ -43,4 +46,5 @@ OUTPUT:
 5/9=0,555555555555556
 ``` 
 
->This program doesn't have code for check the correct input format (any crashes may be due to a number format parsing error)
+</br>
+>Pay attention:This program doesn't have code for check the correct input format (any crashes may be due to a number format parsing error)
