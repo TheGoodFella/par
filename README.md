@@ -22,6 +22,7 @@ type ``` <exe name> --help ``` for the list of available operations
 
 #Examples:
 **1:**
+INPUT:
 ``` 
 >name.exe 8*8 -ores 9+9 -sumall 2+20 1+2 -allores
 ``` 
@@ -34,6 +35,7 @@ OUTPUT:
 25
 ```
 **2:**
+INPUT:
 ``` 
 >name.exe -ores 8*8 5/9
 ``` 
@@ -43,4 +45,5 @@ OUTPUT:
 5/9=0,555555555555556
 ``` 
 
->This program doesn't have code for check the correct input format (any crashes may be due to a number format parsing error)
+</br>
+>Pay attention:This program doesn't have code for check the correct input format (any crashes may be due to a number format parsing error)
