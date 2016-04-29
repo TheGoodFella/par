@@ -101,7 +101,7 @@ namespace par
                        "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
                        "-ores\t\t\tshow only the result, without the syntax a+b=result\n" +
                        "-sumall\t\t\tsum all the results of the operations written after this command\n" +
-                       "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division\n"+
+                       "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division\nSubtraction --> invert the number sign: instead of 8-3 use 8+-3\n"+
                        "OPTIONAL COMMANDS IN ANY PLACE\n"+
                        "-allores\t\tthis command when -sumall, only show the sumall result without syntax: sumall=result";
 
