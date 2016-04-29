@@ -165,7 +165,7 @@ namespace par
         private void IsZero()
         {
             if (Param.Length == 0)
-                Append(SingleCommands(""));
+                Append(SingleCommands(""), true);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace par
             string re = SingleCommands(Param[index]);
             if (re != string.Empty)
             {
-                Append(re);
+                Append(re, true);
                 return true;
             }
             return false;
@@ -192,7 +192,7 @@ namespace par
         {
             if (!double.IsNaN(double.Parse(Param[index])))
             {
-                Append(Param[index]);
+                Append(Param[index], true);
                 if (sumAll)
                     allRes.Add(double.Parse(Param[index]));
             }
@@ -218,20 +218,26 @@ namespace par
                 //get the mathematical symbol
                 string ope = Param[index].Substring(iop, 1);
                 //return the mathematical result
-                Append(Calculate(a, b, ope));
+                Append(Calculate(a, b, ope), true);
             }
         }
 
         #endregion
+        
 
         /// <summary>
         /// Unique method to append text to StringBuilder Sb
         /// </summary>
-        /// <param name="s"></param>
-        private void Append(string s)
+        /// <param name="s">string to append</param>
+        /// <param name="addNewLine">true: add new line, false: do not</param>
+        private void Append(string s, bool addNewLine)
         {
-            Sb.Append(s + "\n");
+            Sb.Append(s);
+            if (addNewLine)
+                Sb.Append("\n");
         }
+
+
 
         /// <summary>
         /// Append to the Sb the commands that need to be executed at last (like -sumall) 
@@ -243,11 +249,15 @@ namespace par
                 double all = 0;
 
                 for (int i = 0; i < allRes.Count; i++)
+                {
+                    if (!onlyAllResult) //if sum all the result, append all the result to Sb without the new line
+                        Append(allRes[i].ToString() + "+", false);
                     all += allRes[i];
+                }
                 if (onlyAllResult)
-                    Append(all.ToString());
+                    Append(all.ToString(), true);
                 else
-                    Append("Sum all=" + all);
+                    Append("=" + all, true);
                 onlyAllResult = false;
             }
         }
