@@ -35,6 +35,8 @@ namespace par
 
         private bool sumAll = false;
 
+        private bool mulAll = false;
+
         private List<double> allRes = new List<double>();
 
         /// <summary>
@@ -69,6 +71,7 @@ namespace par
             dicVoid.Add("-ores", Res);
             dicVoid.Add("-sumall", SumAll);
             dicVoid.Add("-allores", ResAll);
+            dicVoid.Add("-mulall", MulAll);
 
             Sb = new StringBuilder();
         }
@@ -88,6 +91,11 @@ namespace par
         {
             onlyAllResult = true;
         }
+
+        private void MulAll()
+        {
+            mulAll = true;
+        }
         #endregion
 
         #region single methods
@@ -106,9 +114,10 @@ namespace par
                        "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
                        "-ores\t\t\tshow only the result, without the syntax a+b=result\n" +
                        "-sumall\t\t\tsum all the results of the operations written after this command\n" +
+                       "-mulall\t\t\tmultiplies all the results of the operations written after this command\n" +
                        "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division\n^ --> Power\nSubtraction --> invert the number sign: instead of 8-3 use 8+-3\n" +
                        "OPTIONAL COMMANDS IN ANY PLACE\n" +
-                       "-allores\t\tthis command when -sumall, only show the sumall result without syntax: sumall=result\n"+
+                       "-allores\t\tthis command when a -*all command is present, only show the result\n"+
                        "This program doesn't have code for check the correct input format";
 
             return r;
@@ -193,8 +202,7 @@ namespace par
             if (!double.IsNaN(double.Parse(Param[index])))
             {
                 Append(Param[index], true);
-                if (sumAll)
-                    allRes.Add(double.Parse(Param[index]));
+                AddRes(Param[index]);
             }
         }
 
@@ -244,15 +252,32 @@ namespace par
         /// </summary>
         private void LastAppend()
         {
-            if (sumAll)
+            if (sumAll || mulAll)
             {
                 double all = 0;
+                if (sumAll) all = 0;
+                if (mulAll) all = 1;
+
 
                 for (int i = 0; i < allRes.Count; i++)
                 {
+
+                    string o = "";
+                    if (sumAll)
+                    {
+                        all += allRes[i];
+                        o = "+";
+                    }
+                    if (mulAll)
+                    {
+                        all *= allRes[i];
+                        o = "*";
+                    }
                     if (!onlyAllResult) //if sum all the result, append all the result to Sb without the new line
-                        Append(allRes[i].ToString() + "+", false);
-                    all += allRes[i];
+                    {
+                        Append(allRes[i].ToString() + o, false);
+                    }
+
                 }
                 if (onlyAllResult)
                     Append(all.ToString(), true);
@@ -308,8 +333,7 @@ namespace par
             string final = "";
 
             //if sumall is active, store all the final result for other purpose like sum them all, etc
-            if (sumAll)
-                allRes.Add(double.Parse(res));
+            AddRes(res);
 
             if (onlyResult)
                 final = res;
@@ -317,6 +341,12 @@ namespace par
                 final = a + ope + b + "=" + res;
             onlyResult = false;
             return final;
+        }
+
+        private void AddRes(string s)
+        {
+            if (sumAll || mulAll)
+                allRes.Add(double.Parse(s));
         }
 
         private void SendOp(double a, string o, double b)
