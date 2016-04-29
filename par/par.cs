@@ -257,7 +257,10 @@ namespace par
                 if (onlyAllResult)
                     Append(all.ToString(), true);
                 else
+                {
+                    Sb.Remove(Sb.Length - 1, 1); //remove the last + before append =
                     Append("=" + all, true);
+                }
                 onlyAllResult = false;
             }
         }
