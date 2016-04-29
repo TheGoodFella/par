@@ -12,7 +12,7 @@ type ``` <exe name> --help ``` for the list of available operations
 3. Call the instance method ``` ManageCmd() ``` that returns the output string.
 
 #Examples:
-1.
+**1:**
 ``` 
 >name.exe 8*8 -ores 9+9 -sumall 2+20 1+2 -allores
 ``` 
@@ -24,7 +24,7 @@ OUTPUT:
 1+2=3
 25
 ```
-2.
+**2:**
 ``` 
 >name.exe -ores 8*8 5/9
 ``` 
