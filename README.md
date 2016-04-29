@@ -2,7 +2,7 @@
 Console calculator
 
 #How to use it
-call the exe from command line with this syntax: ``` <exe name> <number> <operation symbol (* , + , /)> <number> ```
+call the exe from command line with this syntax: ``` <exe name> <number><operation symbol (* , + , /)><number> ``` no spaces between numbers and operator (```2*3``` --> OK , ```2 * 3``` --> NO!)
 
 type ``` <exe name> --help ``` for the list of available operations
 
