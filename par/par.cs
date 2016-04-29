@@ -68,19 +68,20 @@ namespace par
 
         private string Empty()
         {
-            string r =  "\n"+
-                        "?\t\t\tshow help\n\n" +
-                        "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
-                        "-res\t\t\tshow only the result\n" +
-                        "NUMERIC PARAMETERS:\n" +
-                        "<num><operator><num>\twithout spaces!, return the mathematical result\n";
-                        
-            return r;
+            return Help();
         }
 
         private string Help()
         {
-            return "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division";
+            string r = "\n" +
+                       "?\t\t\tshow help\n\n" +
+                       "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
+                       "-res\t\t\tshow only the result\n" +
+                       "NUMERIC PARAMETERS:\n" +
+                       "<num><operator><num>\twithout spaces!, return the mathematical result\n" +
+                       "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division";
+
+            return r;
         }
         
         public int IndexParam(string s, string q)
@@ -99,6 +100,16 @@ namespace par
 
             for (int i = 0; i < Param.Length; i++)
             {
+                //check if single parameter function commands are available:
+                string re = SingleCommands(Param[i]);
+                if (re != string.Empty)
+                    sb.Append(re);
+                else
+                    //check if void functions command (set up command) are available
+                    VoidCommands(Param[i]);
+
+                //and calculate the operation 
+                //I scroll the array of operation and compare to the input string, if match calculate it
                 for (int o = 0; o < op.Count; o++)
                 {
                     if (Param[i].Contains(op[o]))
@@ -114,14 +125,6 @@ namespace par
                         string ope = Param[i].Substring(index, 1);
                         //return the mathematical result
                         sb.Append(Calculate(a, b, ope) + "\n");
-                    }
-                    else
-                    {
-                        string re = SingleCommands(Param[i]);
-                        if (re != string.Empty)
-                            sb.Append(re);
-                        else
-                            VoidCommands(Param[i]);
                     }
                 }
             }
