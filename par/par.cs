@@ -94,6 +94,7 @@ namespace par
         private string Help()
         {
             string r = "\n" +
+		       "https://github.com/TheGoodFella/par\n\n"+
                        "?\t\t\tshow help\n\n" +
                        "NUMERIC PARAMETERS:\n" +
                        "<num><operator><num>\twithout spaces!, return the mathematical result\n" +
