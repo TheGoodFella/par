@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace par
 {
-
-
-
     public class Par
     {
         Operations op = new Operations();
@@ -62,6 +59,7 @@ namespace par
             dicTri.Add(op[op.Mul], Mul);
             dicTri.Add(op[op.Sum], Sum);
             dicTri.Add(op[op.Div], Div);
+            dicTri.Add(op[op.Pow], Pow);
 
             //dictionary single
             dicSin.Add("?", Help);
@@ -288,7 +286,7 @@ namespace par
         public string Calculate(string a, string b, string ope)
         {
             string res = "";
-
+            Console.WriteLine("operator from Calculate():" + ope);
             Func<string, string, string> d;
             if (dicTri.TryGetValue(ope, out d))
                 res = d(a, b);
@@ -328,6 +326,11 @@ namespace par
         private string Div(string a, string b)
         {
             return (double.Parse(a) / double.Parse(b)).ToString();
+        }
+
+        private string Pow(string a, string b)
+        {
+            return Math.Pow(double.Parse(a), double.Parse(b)).ToString();
         }
 
         #endregion

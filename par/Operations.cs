@@ -18,11 +18,14 @@ namespace par
 
         public int Div { get; private set; }
 
+        public int Pow { get; private set; }
+
         public Operations()
         {
             Add("*"); Mul = 0;
             Add("+"); Sum = 1;
             Add("/"); Div = 2;
+            Add("^");Pow = 3;
         }
     }
 
