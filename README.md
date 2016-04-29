@@ -24,15 +24,16 @@ type ``` <exe name> --help ``` for the list of available operations
 **1:**
 INPUT:
 ``` 
->name.exe 8*8 -ores 9+9 -sumall 2+20 1+2 -allores
+>name.exe 8*8 -ores 9+9 -sumall 2+20 -ores 1+2 2^3
 ``` 
 OUTPUT:
 ``` 
 8*8=64
 18
 2+20=22
-1+2=3
-25
+3
+2^3=8
+22+3+8=33
 ```
 **2:**
 INPUT:
