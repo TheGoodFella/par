@@ -117,11 +117,11 @@ namespace par
                         "\t-sumall                 sum all the results of the operations written after this command\n"                   +
                         "\t-mulall                 multiplies all the results of the operations written after this command\n"            +
                         "\nAVAILABLE OPERATIONS:\n" +
-                        "\t*           --> Multiplication\n"+
-                        "\t+           --> Sum\n"+
-                        "\t/           --> division\n"+
-                        "\t^           --> Power\n"+
-                        "\tsubtraction --> invert the number sign: instead of 8-3 use 8+-3\n" +
+                        "\t*                       Multiplication\n"+
+                        "\t+                       Sum\n" +
+                        "\t/                       division\n" +
+                        "\t^                       Power\n" +
+                        "\tfor the subtraction invert the number sign: instead of 8-3 use 8+-3\n" +
                         "\nOPTIONAL COMMANDS IN ANY PLACE\n"                  +
                         "\t-allores                this command when a *all command is present, only show the result\n"                  +
                         "\nThis program doesn't have code for check the correct input format";
