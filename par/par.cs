@@ -106,20 +106,25 @@ namespace par
 
         private string Help()
         {
-            string r = "\n" +
-               "https://github.com/TheGoodFella/par\n\n" +
-                       "?\t\t\tshow help\n\n" +
-                       "NUMERIC PARAMETERS:\n" +
-                       "<num><operator><num>\twithout spaces!, return the mathematical result\n" +
-                       "OPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n" +
-                       "-ores\t\t\tshow only the result, without the syntax a+b=result\n" +
-                       "-*all COMMANDs (one at a time) (operate with the result of the operation written after it):\n" +
-                       "-sumall\t\t\tsum all the results of the operations written after this command\n" +
-                       "-mulall\t\t\tmultiplies all the results of the operations written after this command\n" +
-                       "available operations:\n* --> Multiplication\n+ --> Sum\n/ --> division\n^ --> Power\nSubtraction --> invert the number sign: instead of 8-3 use 8+-3\n" +
-                       "OPTIONAL COMMANDS IN ANY PLACE\n" +
-                       "-allores\t\tthis command when a -*all command is present, only show the result\n"+
-                       "This program doesn't have code for check the correct input format";
+            string r =  "\n" +
+                        "https://github.com/TheGoodFella/par\n\n"           +
+                        "? \tshow help\n\n"                              +
+                        "\nNUMERIC PARAMETERS:\n"                             +
+                        "\t<num><operator><num>    without spaces!, return the mathematical result\n" +
+                        "\nOPTIONAL COMMANDS OBLIGATORILY BEFORE THE CALC YOU WANT IT TO BE APPLIED:\n"   +
+                        "\t-ores                   show only the result, without the syntax a+b=result\n" +
+                        "\n*ALL COMMANDs (one at a time) (operate with the result of the operation written after it):\n"     +
+                        "\t-sumall                 sum all the results of the operations written after this command\n"                   +
+                        "\t-mulall                 multiplies all the results of the operations written after this command\n"            +
+                        "\nAVAILABLE OPERATIONS:\n" +
+                        "\t*           --> Multiplication\n"+
+                        "\t+           --> Sum\n"+
+                        "\t/           --> division\n"+
+                        "\t^           --> Power\n"+
+                        "\tsubtraction --> invert the number sign: instead of 8-3 use 8+-3\n" +
+                        "\nOPTIONAL COMMANDS IN ANY PLACE\n"                  +
+                        "\t-allores                this command when a *all command is present, only show the result\n"                  +
+                        "\nThis program doesn't have code for check the correct input format";
 
             return r;
         }
